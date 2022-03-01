@@ -12,7 +12,14 @@ const searchPhone = () => {
         fetch(url)
         .then(res => res.json())
                 //  .then(data => console.log(data))
-        .then(data =>displayPhone(data.data))               
+        .then(data => {
+            if(data.data==null){
+                document.getElementById('spiner').style.display='block'
+            }
+            else{displayPhone(data.data);
+                document.getElementById('spiner').style.display='none'
+            }
+        });             
     }
 
     
@@ -22,8 +29,8 @@ const searchPhone = () => {
     // console.log(phoneList);
   phoneList.forEach(phone => {
     // console.log(data);
-    console.log(phone);
-    console.log(phoneList);
+    // console.log(phone);
+    // console.log(phoneList);
   
     const phoneContainer = document.getElementById('phone-container');
     const div = document.createElement('div');
@@ -35,16 +42,28 @@ const searchPhone = () => {
                 <div class="card-body">
                     <h3>Brand: ${phone.brand} </h3>
                     <h4>Model: ${phone.phone_name} </h4>
-                    <button class="btn btn-success"  data-toggle="modal" data-target="#modal"> Show Details</button>
+                    <button onclick="phoneDetails('${phone.slug}')" class="btn btn-success"  data-toggle="modal" data-target="#modal"> Show Details</button>
                 </div>       
             </div>                                                     
         `  
         phoneContainer.appendChild(div);  
         
-  });
-  inputPhone= '';      
+  });   
 
-    //   }
-    }
+}
+
+
+const phoneDetails = (id) => {
+    const url = `https://openapi.programming-hero.com/api/phone/${id}`;
+    // console.log(url)
+    fetch(url)
+      .then((response) => response.json())
+    //   .then(data=>console.log(id))
+      .then((data) => setDetails(data.phone));
+  };
+
+  const setDetails = (info) => {
+      console.log(info)
+  }
 
    
