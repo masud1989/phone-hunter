@@ -35,7 +35,7 @@ const searchPhone = () => {
                 <div class="card-body">
                     <h3>Brand: ${phone.brand} </h3>
                     <h4>Model: ${phone.phone_name} </h4>
-                    <button class="btn btn-success"> Show Details</button>
+                    <button class="btn btn-success"  data-toggle="modal" data-target="#modal"> Show Details</button>
                 </div>       
             </div>                                                     
         `  
