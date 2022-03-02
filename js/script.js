@@ -18,23 +18,26 @@ const searchPhone = () => {
                 document.getElementById('spiner').style.display='block'
             }
             else{displayPhone(data.data);
-                document.getElementById('spiner').style.display='none'
+                document.getElementById('spiner').style.display='none';
+                
             }
         });             
     }
 
     
   const displayPhone = phoneList =>{
-//   const phones = phoneList.slice(10, 100);
+        // for load 20 phones 
+  const phones = phoneList.slice(0, 20);
 document.getElementById('input-phone').value = '';
     // console.log(phoneList);
-  phoneList.forEach(phone => {
+    phones.forEach(phone => {
     // console.log(data);
     // console.log(phone);
     // console.log(phoneList);
   
     const phoneContainer = document.getElementById('phone-container');
     const div = document.createElement('div');
+    const more = document.getElementById('more');
     
     div.classList.add('col-md-4')
    
@@ -47,8 +50,10 @@ document.getElementById('input-phone').value = '';
                     <h5>Model: ${phone.phone_name} </h5>
                     <button onclick="phoneDetails('${phone.slug}')" class="btn btn-success"  data-toggle="modal" data-target="#modal"> Show Details</button>
                 </div>       
-            </div>                                                     
-        `  
+            </div>    
+                                                            
+        ` 
+          
         phoneContainer.appendChild(div);  
         
         
@@ -68,7 +73,7 @@ const phoneDetails = (id) => {
   };
 
   const setDetails = (info) => {
-      console.log(info);
+      console.log('hi',info);
       document.getElementById('detail-container').innerHTML = '';
       const detailContainer = document.getElementById('detail-container');
       const div = document.createElement('div');
@@ -81,20 +86,19 @@ const phoneDetails = (id) => {
                     <h4>Model: ${info.name}  </h4>
                     <p class>
                         <h5 class="bg-success text-white text-center p-1">Main Features:</h5> 
-                         <h6>Storage: ${info.mainFeatures.storage} </h6>
-                         <h6>Dislay : ${info.mainFeatures.displaySize} </h6>
-                         <h6>Dislay : ${info.mainFeatures.displaySize} </h6>
-                         <h6>ChipSet : ${info.mainFeatures.chipSet} </h6>
-                        <h6>ChipSet : ${info.mainFeatures.chipSet} </h6>
+                         <h6 class="bg-light text-success fs-bold">Storage: ${info.mainFeatures.storage} </h6>
+                         <h6 class="bg-light text-success fs-bold">Dislay : ${info.mainFeatures.displaySize} </h6>
+                         <h6 class="bg-light text-success fs-bold">ChipSet : ${info.mainFeatures.chipSet} </h6>
                     </p>
 
                     <p>
                          <h5 class="bg-success text-white text-center p-1">Other Features:</h5> 
-                         <h6>WLAN : ${info.others.WLAN} </h6>
-                         <h6>WLAN : ${info.others.Bluetooth} </h6>
-                         <h6>GPS : ${info.others.GPS} </h6>
-                         <h6>NFC : ${info.others.NFC} </h6>
-                         <h6>Release Date : ${info.releaseDate} </h6>
+                         <h6 class="bg-light text-success fs-bold">WLAN : ${info.others.WLAN} </h6>
+                         <h6 class="bg-light text-success fs-bold">Connection : ${info.others.Bluetooth} </h6>
+                         <h6 class="bg-light text-success fs-bold">GPS : ${info.others.GPS} </h6>
+                         <h6 class="bg-light text-success fs-bold">NFC : ${info.others.NFC} </h6>
+                         <h6 class="bg-light text-success fs-bold">Release Date : ${info.releaseDate} </h6>
+                        
                     </p>
                 </div>       
             </div>    
